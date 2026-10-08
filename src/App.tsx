@@ -3,6 +3,7 @@ import { ThemeProvider } from './hooks/useTheme';
 import { publicRoutes } from './routes/routeConfig';
 import { paths } from './routes/paths';
 import { SiteLayout } from './layouts/SiteLayout';
+import { HomePage } from './pages/HomePage';
 
 function RoutePlaceholder({ label }: { label: string }) {
   return (
@@ -15,7 +16,8 @@ function RoutePlaceholder({ label }: { label: string }) {
 
 function AppRoutes() {
   return useRoutes([
-    ...publicRoutes.map((route) => ({
+    { path: paths.home, element: <HomePage /> },
+    ...publicRoutes.filter((route) => route.path !== paths.home).map((route) => ({
       path: route.path,
       element: <RoutePlaceholder label={route.label} />,
     })),

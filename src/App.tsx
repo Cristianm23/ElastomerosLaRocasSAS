@@ -8,6 +8,8 @@ import { ProductsPage } from './pages/ProductsPage';
 import { CategoriesPage } from './pages/CategoriesPage';
 import { ProductDetailPage } from './pages/ProductDetailPage';
 import { CategoryDetailPage } from './pages/CategoryDetailPage';
+import { ServicesPage, ServiceDetailPage } from './pages/ServicePage';
+import { AboutPage, FaqPage, NotFoundPage, PrivacyPage, TermsPage } from './pages/InformationalPages';
 
 function RoutePlaceholder({ label }: { label: string }) {
   return (
@@ -27,15 +29,22 @@ function AppRoutes() {
       .filter((route) => route.path !== paths.home && route.path !== paths.products && route.path !== paths.categories)
       .map((route) => ({
       path: route.path,
-      element: <RoutePlaceholder label={route.label} />,
+      element:
+        route.path === paths.services ? <ServicesPage /> :
+        route.path === paths.about ? <AboutPage /> :
+        route.path === paths.faq ? <FaqPage /> :
+        route.path === paths.contact ? <RoutePlaceholder label={route.label} /> :
+        route.path === paths.privacy ? <PrivacyPage /> :
+        route.path === paths.terms ? <TermsPage /> :
+        <RoutePlaceholder label={route.label} />,
       })),
     { path: paths.productDetail(':slug'), element: <ProductDetailPage /> },
     { path: paths.categoryDetail(':slug'), element: <CategoryDetailPage /> },
-    { path: paths.serviceDetail(':slug'), element: <RoutePlaceholder label="Detalle de servicio" /> },
-    { path: paths.privacy, element: <RoutePlaceholder label="Política de privacidad" /> },
-    { path: paths.terms, element: <RoutePlaceholder label="Términos y condiciones" /> },
-    { path: paths.notFound, element: <RoutePlaceholder label="Página no encontrada" /> },
-    { path: '*', element: <RoutePlaceholder label="Página no encontrada" /> },
+    { path: paths.serviceDetail(':slug'), element: <ServiceDetailPage /> },
+    { path: paths.privacy, element: <PrivacyPage /> },
+    { path: paths.terms, element: <TermsPage /> },
+    { path: paths.notFound, element: <NotFoundPage /> },
+    { path: '*', element: <NotFoundPage /> },
   ]);
 }
 

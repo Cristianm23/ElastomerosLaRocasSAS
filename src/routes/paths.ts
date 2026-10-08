@@ -5,6 +5,11 @@ export const paths = {
   categories: '/categorias',
   categoryDetail: (slug: string) => `/categorias/${slug}`,
   services: '/servicios',
+  serviceDetail: (slug: string) => `/servicios/${slug}`,
+  about: '/nosotros',
   faq: '/preguntas-frecuentes',
   contact: '/contacto',
+  privacy: '/politica-de-privacidad',
+  terms: '/terminos-y-condiciones',
+  notFound: '/404',
 } as const;

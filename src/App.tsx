@@ -2,10 +2,11 @@ import { BrowserRouter, useRoutes } from 'react-router-dom';
 import { ThemeProvider } from './hooks/useTheme';
 import { publicRoutes } from './routes/routeConfig';
 import { paths } from './routes/paths';
+import { SiteLayout } from './layouts/SiteLayout';
 
 function RoutePlaceholder({ label }: { label: string }) {
   return (
-    <main>
+    <main className="page-placeholder site-container">
       <h1>{label}</h1>
       <p>Contenido de esta sección pendiente de desarrollo en fases posteriores.</p>
     </main>
@@ -20,6 +21,10 @@ function AppRoutes() {
     })),
     { path: paths.productDetail(':slug'), element: <RoutePlaceholder label="Detalle de producto" /> },
     { path: paths.categoryDetail(':slug'), element: <RoutePlaceholder label="Detalle de categoría" /> },
+    { path: paths.serviceDetail(':slug'), element: <RoutePlaceholder label="Detalle de servicio" /> },
+    { path: paths.privacy, element: <RoutePlaceholder label="Política de privacidad" /> },
+    { path: paths.terms, element: <RoutePlaceholder label="Términos y condiciones" /> },
+    { path: paths.notFound, element: <RoutePlaceholder label="Página no encontrada" /> },
     { path: '*', element: <RoutePlaceholder label="Página no encontrada" /> },
   ]);
 }
@@ -28,7 +33,9 @@ export default function App() {
   return (
     <ThemeProvider>
       <BrowserRouter>
-        <AppRoutes />
+        <SiteLayout>
+          <AppRoutes />
+        </SiteLayout>
       </BrowserRouter>
     </ThemeProvider>
   );

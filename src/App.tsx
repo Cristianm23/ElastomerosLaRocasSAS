@@ -10,6 +10,7 @@ import { ProductDetailPage } from './pages/ProductDetailPage';
 import { CategoryDetailPage } from './pages/CategoryDetailPage';
 import { ServicesPage, ServiceDetailPage } from './pages/ServicePage';
 import { AboutPage, FaqPage, NotFoundPage, PrivacyPage, TermsPage } from './pages/InformationalPages';
+import { ContactPage } from './pages/ContactPage';
 
 function RoutePlaceholder({ label }: { label: string }) {
   return (
@@ -33,7 +34,7 @@ function AppRoutes() {
         route.path === paths.services ? <ServicesPage /> :
         route.path === paths.about ? <AboutPage /> :
         route.path === paths.faq ? <FaqPage /> :
-        route.path === paths.contact ? <RoutePlaceholder label={route.label} /> :
+        route.path === paths.contact ? <ContactPage /> :
         route.path === paths.privacy ? <PrivacyPage /> :
         route.path === paths.terms ? <TermsPage /> :
         <RoutePlaceholder label={route.label} />,

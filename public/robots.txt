@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Configure VITE_SITE_URL and replace the placeholder before production release.
+Sitemap: {{SITE_URL}}/sitemap.xml

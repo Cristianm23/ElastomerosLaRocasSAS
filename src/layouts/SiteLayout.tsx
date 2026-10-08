@@ -108,8 +108,9 @@ function Footer() {
 export function SiteLayout({ children }: { children: ReactNode }) {
   return (
     <div className="site-shell">
+      <a className="skip-link" href="#main-content">Saltar al contenido principal</a>
       <Header />
-      <div className="site-main">{children}</div>
+      <div className="site-main" id="main-content" tabIndex={-1}>{children}</div>
       <Footer />
     </div>
   );

@@ -11,6 +11,7 @@ import { CategoryDetailPage } from './pages/CategoryDetailPage';
 import { ServicesPage, ServiceDetailPage } from './pages/ServicePage';
 import { AboutPage, FaqPage, NotFoundPage, PrivacyPage, TermsPage } from './pages/InformationalPages';
 import { ContactPage } from './pages/ContactPage';
+import { Seo } from './components/Seo';
 
 function RoutePlaceholder({ label }: { label: string }) {
   return (
@@ -22,7 +23,7 @@ function RoutePlaceholder({ label }: { label: string }) {
 }
 
 function AppRoutes() {
-  return useRoutes([
+  const routes = useRoutes([
     { path: paths.home, element: <HomePage /> },
     { path: paths.products, element: <ProductsPage /> },
     { path: paths.categories, element: <CategoriesPage /> },
@@ -47,6 +48,7 @@ function AppRoutes() {
     { path: paths.notFound, element: <NotFoundPage /> },
     { path: '*', element: <NotFoundPage /> },
   ]);
+  return <><Seo />{routes}</>;
 }
 
 export default function App() {

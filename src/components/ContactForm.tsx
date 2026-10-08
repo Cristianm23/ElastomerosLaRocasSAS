@@ -58,16 +58,16 @@ export function ContactForm({ kind }: { kind: FormKind }) {
         <p>{labels.intro}</p>
       </div>
       <div className="form-grid">
-        <Field label="Nombre" name="name" value={values.name} error={errors.name} required onChange={(value) => update('name', value)} />
-        <Field label="Empresa" name="company" value={values.company} error={errors.company} required={kind === 'quote'} onChange={(value) => update('company', value)} />
-        <Field label="Correo electrónico" name="email" type="email" value={values.email} error={errors.email} required onChange={(value) => update('email', value)} />
-        <Field label="Teléfono" name="phone" value={values.phone} error={errors.phone} onChange={(value) => update('phone', value)} />
+        <Field kind={kind} label="Nombre" name="name" value={values.name} error={errors.name} required onChange={(value) => update('name', value)} />
+        <Field kind={kind} label="Empresa" name="company" value={values.company} error={errors.company} required={kind === 'quote'} onChange={(value) => update('company', value)} />
+        <Field kind={kind} label="Correo electrónico" name="email" type="email" value={values.email} error={errors.email} required onChange={(value) => update('email', value)} />
+        <Field kind={kind} label="Teléfono" name="phone" value={values.phone} error={errors.phone} onChange={(value) => update('phone', value)} />
         {kind === 'contact' ? (
-          <Field label="Asunto" name="subject" value={values.subject} error={errors.subject} required onChange={(value) => update('subject', value)} />
+          <Field kind={kind} label="Asunto" name="subject" value={values.subject} error={errors.subject} required onChange={(value) => update('subject', value)} />
         ) : (
           <>
-            <Field label="Producto o categoría de interés" name="interest" value={values.interest} error={errors.interest} required onChange={(value) => update('interest', value)} />
-            <Field label="Cantidad (opcional)" name="quantity" value={values.quantity} error={errors.quantity} onChange={(value) => update('quantity', value)} />
+            <Field kind={kind} label="Producto o categoría de interés" name="interest" value={values.interest} error={errors.interest} required onChange={(value) => update('interest', value)} />
+            <Field kind={kind} label="Cantidad (opcional)" name="quantity" value={values.quantity} error={errors.quantity} onChange={(value) => update('quantity', value)} />
           </>
         )}
         <div className="form-field form-field--wide">
@@ -97,8 +97,8 @@ export function ContactForm({ kind }: { kind: FormKind }) {
   );
 }
 
-function Field({ label, name, type = 'text', value, error, required = false, onChange }: { label: string; name: keyof FormValues; type?: string; value: string; error?: string; required?: boolean; onChange: (value: string) => void }) {
-  const id = `form-${name}`;
+function Field({ kind, label, name, type = 'text', value, error, required = false, onChange }: { kind: FormKind; label: string; name: keyof FormValues; type?: string; value: string; error?: string; required?: boolean; onChange: (value: string) => void }) {
+  const id = `${kind}-${name}`;
   return <div className={`form-field${error ? ' form-field--error' : ''}`}>
     <label className="form-field__label" htmlFor={id}>{label}{required && <span aria-hidden="true"> *</span>}</label>
     <input id={id} name={name} type={type} value={value} required={required} aria-invalid={Boolean(error)} aria-describedby={error ? `${id}-error` : undefined} onChange={(event) => onChange(event.target.value)} />

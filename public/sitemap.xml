@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Replace {{SITE_URL}} with the confirmed public site URL before deployment. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>{{SITE_URL}}/</loc></url>
+  <url><loc>{{SITE_URL}}/productos</loc></url>
+  <url><loc>{{SITE_URL}}/categorias</loc></url>
+  <url><loc>{{SITE_URL}}/servicios</loc></url>
+  <url><loc>{{SITE_URL}}/nosotros</loc></url>
+  <url><loc>{{SITE_URL}}/preguntas-frecuentes</loc></url>
+  <url><loc>{{SITE_URL}}/contacto</loc></url>
+</urlset>

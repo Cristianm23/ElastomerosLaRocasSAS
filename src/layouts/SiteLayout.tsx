@@ -1,10 +1,17 @@
-import { useState, type ReactNode } from 'react';
-import { Menu, X } from 'lucide-react';
-import { Link, NavLink, useLocation } from 'react-router-dom';
-import { companyConfig } from '../data/company';
-import { publicRoutes } from '../routes/routeConfig';
-import { paths } from '../routes/paths';
-import { ThemeControl } from '../components/ThemeControl';
+import { useState, type ReactNode } from "react";
+import { Mail, MapPin, Menu, Phone, X } from "lucide-react";
+import { Link, NavLink, useLocation } from "react-router-dom";
+import { companyConfig } from "../data/company";
+import { paths } from "../routes/paths";
+import { WhatsAppButton } from "../components/WhatsAppButton";
+
+const mainNavigation = [
+  { path: paths.home, label: "Inicio" },
+  { path: paths.about, label: "Nosotros" },
+  { path: paths.products, label: "Productos" },
+  { path: paths.services, label: "Fabricaciones especiales" },
+  { path: paths.contact, label: "Contacto" },
+];
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -16,13 +23,11 @@ function Header() {
     <header className="site-header">
       <div className="site-container site-header__inner">
         <Link className="brand" to={paths.home} onClick={closeMenu}>
-          <span className="brand__mark" aria-hidden="true">
-            LR
-          </span>
-          <span>
-            <strong>{companyConfig.displayName}</strong>
-            <small>S.A.S.</small>
-          </span>
+          <img
+            className="brand__logo"
+            src="/logo-elastomeros.jpg"
+            alt="Elast&#243;meros La Roca S.A.S. Dise&#241;o y fabricaci&#243;n de productos en poliuretano y caucho"
+          />
         </Link>
 
         <button
@@ -30,7 +35,11 @@ function Header() {
           type="button"
           aria-expanded={isMenuOpen}
           aria-controls="primary-navigation"
-          aria-label={isMenuOpen ? 'Cerrar menú principal' : 'Abrir menú principal'}
+          aria-label={
+            isMenuOpen
+              ? "Cerrar men\u00fa principal"
+              : "Abrir men\u00fa principal"
+          }
           onClick={() => setIsMenuOpen((open) => !open)}
         >
           {isMenuOpen ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
@@ -38,14 +47,16 @@ function Header() {
 
         <nav
           id="primary-navigation"
-          className={`primary-navigation${isMenuOpen ? ' primary-navigation--open' : ''}`}
-          aria-label="Navegación principal"
+          className={`primary-navigation${isMenuOpen ? " primary-navigation--open" : ""}`}
+          aria-label="NavegaciÃƒÆ’Ã‚Â³n principal"
         >
           <div className="primary-navigation__links">
-            {publicRoutes.map((route) => (
+            {mainNavigation.map((route) => (
               <NavLink
                 key={route.path}
-                className={({ isActive }) => (isActive ? 'nav-link nav-link--active' : 'nav-link')}
+                className={({ isActive }) =>
+                  isActive ? "nav-link nav-link--active" : "nav-link"
+                }
                 end={route.path === paths.home}
                 to={route.path}
                 onClick={closeMenu}
@@ -54,15 +65,11 @@ function Header() {
               </NavLink>
             ))}
           </div>
-          <div className="primary-navigation__actions">
-            <ThemeControl />
-            <Link className="button button--accent" to={paths.contact} onClick={closeMenu}>
-              Solicitar información
-            </Link>
-          </div>
         </nav>
       </div>
-      {location.pathname && <span className="sr-only">Página actual: {location.pathname}</span>}
+      {location.pathname && (
+        <span className="sr-only">P&#225;gina actual: {location.pathname}</span>
+      )}
     </header>
   );
 }
@@ -73,32 +80,31 @@ function Footer() {
       <div className="site-container site-footer__grid">
         <div>
           <Link className="brand brand--footer" to={paths.home}>
-            <span className="brand__mark" aria-hidden="true">
-              LR
-            </span>
-            <span>
-              <strong>{companyConfig.displayName}</strong>
-              <small>S.A.S.</small>
-            </span>
+            <img
+              className="brand__logo"
+              src="/logo-elastomeros.jpg"
+              alt="Elast&#243;meros La Roca S.A.S. Dise&#241;o y fabricaci&#243;n de productos en poliuretano y caucho"
+            />
           </Link>
-          <p>{companyConfig.description}</p>
         </div>
         <div>
-          <h2 className="site-footer__title">Explorar</h2>
-          <Link to={paths.products}>Productos</Link>
-          <Link to={paths.services}>Servicios</Link>
-          <Link to={paths.about}>Nosotros</Link>
-          <Link to={paths.contact}>Contacto</Link>
+          <p>
+            <MapPin aria-hidden="true" size={24} />
+            <span>
+              <strong>Carrera 69 Bis #31-02 Sur Bogot&#225;, Colombia</strong>
+              Atendemos clientes en todo el pa&#237;s.
+            </span>
+          </p>
         </div>
         <div>
-          <h2 className="site-footer__title">Información legal</h2>
-          <Link to={paths.privacy}>Política de privacidad</Link>
-          <Link to={paths.terms}>Términos y condiciones</Link>
-        </div>
-      </div>
-      <div className="site-footer__bottom">
-        <div className="site-container">
-          <small>© {new Date().getFullYear()} {companyConfig.legalName}</small>
+          <p>
+            <Mail aria-hidden="true" size={24} />
+            <span>{companyConfig.contact.email}</span>
+          </p>
+          <p>
+            <Phone aria-hidden="true" size={24} />
+            <span>{companyConfig.contact.phone}</span>
+          </p>
         </div>
       </div>
     </footer>
@@ -108,10 +114,15 @@ function Footer() {
 export function SiteLayout({ children }: { children: ReactNode }) {
   return (
     <div className="site-shell">
-      <a className="skip-link" href="#main-content">Saltar al contenido principal</a>
+      <a className="skip-link" href="#main-content">
+        Saltar al contenido principal
+      </a>
       <Header />
-      <div className="site-main" id="main-content" tabIndex={-1}>{children}</div>
+      <div className="site-main" id="main-content" tabIndex={-1}>
+        {children}
+      </div>
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 }

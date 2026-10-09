@@ -8,7 +8,7 @@ export function CategoryCard({ category, productCount }: { category: ProductCate
     <article className="catalog-card">
       <div className="catalog-card__media catalog-card__media--category">
         {category.image ? (
-          <img src={category.image} alt="" loading="lazy" />
+          <img src={category.image} alt={`Categoría: ${category.name}`} loading="lazy" width="1152" height="768" />
         ) : (
           <>
             <Boxes aria-hidden="true" size={34} />

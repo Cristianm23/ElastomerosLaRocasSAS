@@ -14,7 +14,7 @@ export function ProductDetailPage() {
       <section className="catalog-header"><div className="site-container"><Link className="back-link" to={paths.products}><ArrowLeft size={16} /> Volver a productos</Link><p className="eyebrow">Detalle de producto</p><h1>{product.name}</h1><p>{product.description}</p></div></section>
       <section className="home-section">
         <div className="site-container detail-grid">
-          <div className="detail-media">{product.image ? <img src={product.image} alt="" /> : <><Wrench size={64} /><span><ImageOff size={15} /> Imagen pendiente de confirmar</span></>}</div>
+          <div className="detail-media">{product.image ? <img src={product.image} alt={`Producto: ${product.name}`} width="1152" height="768" /> : <><Wrench size={64} /><span><ImageOff size={15} /> Imagen pendiente de confirmar</span></>}</div>
           <div className="detail-content">
             <span className="catalog-card__category">{category?.name ?? 'Categoría pendiente'}</span>
             <h2>Información disponible</h2>

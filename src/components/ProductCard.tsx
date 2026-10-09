@@ -11,7 +11,7 @@ export function ProductCard({ product }: { product: Product }) {
     <article className="catalog-card">
       <div className="catalog-card__media">
         {product.image ? (
-          <img src={product.image} alt="" loading="lazy" />
+          <img src={product.image} alt={`Producto: ${product.name}`} loading="lazy" width="1152" height="768" />
         ) : (
           <>
             <Wrench aria-hidden="true" size={34} />

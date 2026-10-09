@@ -1,0 +1,8 @@
+{
+	"mcpServers": {
+		"my-mcp-server-f8111460": {
+			"url": "https://developers.openai.com/mcp",
+			"type": "http"
+		}
+	}
+}

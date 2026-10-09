@@ -6,7 +6,7 @@ import { aboutContent, privacyContent, termsContent, type InformationalSection }
 import { paths } from '../routes/paths';
 
 export function AboutPage() {
-  return <InformationalPage eyebrow="La empresa" title="Nosotros" intro="Información corporativa pendiente de validación." sections={aboutContent} icon={<ShieldCheck aria-hidden="true" size={30} />} />;
+  return <InformationalPage eyebrow="La empresa" title="Nosotros" intro="Experiencia, familia y fortaleza al servicio de la industria." sections={aboutContent} icon={<ShieldCheck aria-hidden="true" size={30} />} />;
 }
 
 export function PrivacyPage() {

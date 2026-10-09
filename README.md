@@ -99,9 +99,13 @@ La fuente centralizada de datos se encuentra en `src/data/catalog.ts`.
 - Editar `productCategories` para añadir o actualizar categorías.
 - Editar `products` para añadir o actualizar productos.
 - Editar `services` para añadir o actualizar servicios.
+- Actualizar `companyConfig.contact.whatsapp` con el número internacional sin espacios ni símbolos cuando sea necesario.
 - Mantener `id` y `slug` únicos.
 - Hacer coincidir `Product.categoryId` con el `id` de una categoría existente.
 - Añadir especificaciones técnicas, documentos, imágenes o etiquetas solo cuando estén confirmados.
+- Guardar las imágenes públicas de productos en `public/images/products/` usando formato `.webp`, nombres descriptivos y rutas absolutas desde `public`, por ejemplo `/images/products/rodillos-en-poliuretano.webp`.
+- Mantener el logotipo público en `public/logo-elastomeros.jpg` y actualizar su texto alternativo desde `src/layouts/SiteLayout.tsx` si cambia la marca.
+- Gestionar los números disponibles en el botón flotante desde `whatsappContacts` en `src/data/company.ts`; usar formato internacional, sin espacios ni símbolos.
 - Mantener `isDemo: true` mientras un registro sea provisional.
 - No añadir precios, certificaciones, clientes, capacidades o afirmaciones no verificadas.
 
@@ -112,6 +116,8 @@ npm run build
 ```
 
 Verificar el listado, búsqueda, filtros, detalles y enlaces relacionados.
+
+Las imágenes recibidas y confirmadas se muestran en las tarjetas y páginas de detalle con carga diferida, texto alternativo y dimensiones declaradas. Si se incorpora una imagen nueva, conviértela a WebP antes de referenciarla desde `catalog.ts`.
 
 ## Configurar el proveedor de formularios
 
